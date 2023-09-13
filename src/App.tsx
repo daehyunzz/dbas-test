@@ -1,9 +1,11 @@
+import { RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { router } from './routers/Router';
 
 export const App = () => {
     return (
         <RecoilRoot>
-            <h1>boilerplate</h1>
+            <RouterProvider router={router} />
         </RecoilRoot>
     );
 };
