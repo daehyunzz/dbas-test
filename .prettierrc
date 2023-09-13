@@ -10,5 +10,22 @@
     "arrowParens": "always",
     "endOfLine": "lf",
     "bracketSpacing": true,
-    "jsxBracketSameLine": false
+    "jsxBracketSameLine": false,
+    "plugins": ["@trivago/prettier-plugin-sort-imports"],
+    "importOrder": [
+        "^react$",
+        "^react(.*)",
+        "<THIRD_PARTY_MODULES>",
+        "^@routers/(.*)$",
+        "^@apis/(.*)$",
+        "^@utils/(.*)$",
+        "^@typings/(.*)$",
+        "^@components/(.*)$",
+        "^@pages/(.*)$",
+        "^@stores/(.*)$",
+        "@/(.*)",
+        "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
 }
