@@ -50,12 +50,18 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
 );
 
 export function SetProductOptions() {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
     const [category, setCategory] = useState('');
     const [필수고시정보Category, set필수고시정보Category] = useState('');
     const [status, setStatus] = useState('');
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+    const [images, setImages] = useState<FileList | null>(null);
+
     const [productCode, setProductCode] = useState('');
     const [isAutoGenerateProductCode, setIsAutoGenerateProductCode] = useState(false);
+
+    const [propertyFile, setPropertyFile] = useState<FileList | null>(null);
 
     return (
         <Stack width="1500px">
@@ -110,38 +116,67 @@ export function SetProductOptions() {
 
                     <Stack spacing="6px" mb="40px">
                         <Heading6>이미지</Heading6>
-                        <MuiButton
-                            component="label"
-                            variant="outlined"
-                            sx={{
-                                width: '140px',
-                                height: '140px',
-                                color: 'black',
-                                borderColor: 'black',
-                            }}
-                        >
-                            <Stack justifyContent="center" alignItems="center">
-                                <AddIcon />
-                                <Typography fontWeight="400" fontSize="20px" lineHeight="23.44px">
-                                    사진추가
-                                </Typography>
-                            </Stack>
-                            <Box
-                                component="input"
-                                type="file"
+                        <Stack direction="row" spacing="8px">
+                            <MuiButton
+                                component="label"
+                                variant="outlined"
                                 sx={{
-                                    clip: 'rect(0 0 0 0)',
-                                    clipPath: 'inset(50%)',
-                                    height: 1,
-                                    overflow: 'hidden',
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    whiteSpace: 'nowrap',
-                                    width: 1,
+                                    width: '140px',
+                                    height: '140px',
+                                    color: 'black',
+                                    borderColor: 'black',
                                 }}
-                            />
-                        </MuiButton>
+                            >
+                                <Stack justifyContent="center" alignItems="center">
+                                    <AddIcon />
+                                    <Typography
+                                        fontWeight="400"
+                                        fontSize="20px"
+                                        lineHeight="23.44px"
+                                    >
+                                        사진추가
+                                    </Typography>
+                                </Stack>
+                                <Box
+                                    component="input"
+                                    type="file"
+                                    sx={{
+                                        clip: 'rect(0 0 0 0)',
+                                        clipPath: 'inset(50%)',
+                                        height: 1,
+                                        overflow: 'hidden',
+                                        position: 'absolute',
+                                        bottom: 0,
+                                        left: 0,
+                                        whiteSpace: 'nowrap',
+                                        width: 1,
+                                    }}
+                                    accept="image/*"
+                                    multiple
+                                    onChange={(e) => {
+                                        if (e.target.files) {
+                                            setImages(e.target.files);
+                                        }
+                                    }}
+                                />
+                            </MuiButton>
+                            {images &&
+                                Array.from(images).map((image) => (
+                                    <Box
+                                        key={image.name}
+                                        component="img"
+                                        src={URL.createObjectURL(image)}
+                                        alt={image.name}
+                                        width="140px"
+                                        height="140px"
+                                        style={{
+                                            objectFit: 'cover',
+                                            borderRadius: '4px',
+                                            border: '1px solid #000',
+                                        }}
+                                    />
+                                ))}
+                        </Stack>
                     </Stack>
                 </Stack>
                 <Stack width="700px">
@@ -281,38 +316,62 @@ export function SetProductOptions() {
                                 템플릿 다운로드
                             </MuiButton>
                         </Stack>
-                        <MuiButton
-                            component="label"
-                            variant="outlined"
-                            startIcon={<AddIcon />}
-                            sx={{
-                                height: '64px',
-                                fontWeight: '400',
-                                fontSize: '26px',
-                                lineHeight: '30.47px',
-                                color: '#969696',
-                                borderColor: '#000',
-                                paddingLeft: '25px',
-                                paddingRight: '25px',
-                            }}
-                        >
-                            여기에 속성 템플릿을 업로드해주세요.
+                        {propertyFile ? (
                             <Box
-                                component="input"
-                                type="file"
                                 sx={{
-                                    clip: 'rect(0 0 0 0)',
-                                    clipPath: 'inset(50%)',
-                                    height: 1,
-                                    overflow: 'hidden',
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    whiteSpace: 'nowrap',
-                                    width: 1,
+                                    borderRadius: '4px',
+                                    backgroundColor: '#00448D',
+                                    fontSize: '28px',
+                                    lineHeight: '32.81px',
+                                    color: '#fff',
+                                    width: '700px',
+                                    height: '64px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
                                 }}
-                            />
-                        </MuiButton>
+                            >
+                                {propertyFile[0].name}
+                            </Box>
+                        ) : (
+                            <MuiButton
+                                component="label"
+                                variant="outlined"
+                                startIcon={<AddIcon />}
+                                sx={{
+                                    height: '64px',
+                                    fontWeight: '400',
+                                    fontSize: '26px',
+                                    lineHeight: '30.47px',
+                                    color: '#969696',
+                                    borderColor: '#000',
+                                    paddingLeft: '25px',
+                                    paddingRight: '25px',
+                                }}
+                            >
+                                여기에 속성 템플릿을 업로드해주세요.
+                                <Box
+                                    component="input"
+                                    type="file"
+                                    sx={{
+                                        clip: 'rect(0 0 0 0)',
+                                        clipPath: 'inset(50%)',
+                                        height: 1,
+                                        overflow: 'hidden',
+                                        position: 'absolute',
+                                        bottom: 0,
+                                        left: 0,
+                                        whiteSpace: 'nowrap',
+                                        width: 1,
+                                    }}
+                                    onChange={(e) => {
+                                        if (e.target.files) {
+                                            setPropertyFile(e.target.files);
+                                        }
+                                    }}
+                                />
+                            </MuiButton>
+                        )}
                     </Stack>
 
                     <Stack spacing="6px" mb="40px">
@@ -325,9 +384,10 @@ export function SetProductOptions() {
                                     content: `"판매 상태를 선택해주세요."`,
                                     color: '#898989',
                                 },
+                                'color': status === '판매중' ? '#2BBC42' : '#000',
                             }}
                         >
-                            <MenuItem value="판매상태1">판매상태 1</MenuItem>
+                            <MenuItem value="판매중">판매중</MenuItem>
                             <MenuItem value="판매상태2">판매상태 2</MenuItem>
                         </Select>
                     </Stack>
