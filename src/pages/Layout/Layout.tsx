@@ -16,9 +16,9 @@ import {
     Stack,
 } from '@mui/material';
 
-import logo from '../../assets/Logo_FOUCS.png';
+import logo from '../../assets/focusLogo.svg';
 
-const SNBList = [
+const LINKS = [
     { name: '제품 관리', children: false, url: '/product' },
     { name: '상품 관리', children: false, url: '/goods' },
     { name: '판매/주문 관리', children: true },
@@ -96,7 +96,7 @@ export const Layout: React.FC = () => {
                         }}
                     />
                     <List>
-                        {SNBList.map((link) => {
+                        {LINKS.map((link) => {
                             const isActive = link.url && location.pathname.startsWith(link.url);
                             return (
                                 <ListItem
