@@ -1,19 +1,14 @@
-import { forwardRef, useState } from 'react';
-
-import { NumericFormat, NumericFormatProps } from 'react-number-format';
+import { useState } from 'react';
 
 import AddIcon from '@mui/icons-material/Add';
 import DownloadIcon from '@mui/icons-material/Download';
 import Box from '@mui/material/Box';
 import MuiButton from '@mui/material/Button';
-import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 
-import { Button, MenuItem, Select, TextField } from '@components/Ui';
-
-import { Drawer } from './Drawer';
+import { MenuItem, Select, TextField } from '@components/Ui';
 
 const Heading6 = styled(Typography)({
     fontWeight: '600',
@@ -22,52 +17,14 @@ const Heading6 = styled(Typography)({
     letterSpacing: '1%',
 });
 
-interface CustomProps {
-    onChange: (event: { target: { name: string; value: string } }) => void;
-    name: string;
-}
-const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
-    function NumericFormatCustom(props, ref) {
-        const { onChange, ...other } = props;
-
-        return (
-            <NumericFormat
-                {...other}
-                getInputRef={ref}
-                onValueChange={(values) => {
-                    onChange({
-                        target: {
-                            name: props.name,
-                            value: values.value,
-                        },
-                    });
-                }}
-                thousandSeparator
-                valueIsNumericString
-            />
-        );
-    }
-);
-
-export function SetProductOptions() {
+// 제품
+export function MakeProduct() {
     const [category, setCategory] = useState('');
-    const [필수고시정보Category, set필수고시정보Category] = useState('');
-    const [status, setStatus] = useState('');
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [productCode, setProductCode] = useState('');
-    const [isAutoGenerateProductCode, setIsAutoGenerateProductCode] = useState(false);
+    const [isAutoGenerateItemCode, setIsAutoGenerateItemCode] = useState(false);
 
     return (
         <Stack width="1500px">
-            <Drawer
-                open={isDrawerOpen}
-                onClose={() => setIsDrawerOpen(false)}
-                category={필수고시정보Category}
-                setCategory={set필수고시정보Category}
-            />
-            <Typography fontWeight="700" fontSize="32px" lineHeight="37.5px">
-                상품 설정
-            </Typography>
             <Stack direction="row" spacing="100px" mt="40px">
                 <Stack width="700px">
                     <Stack spacing="6px" mb="40px">
@@ -156,7 +113,7 @@ export function SetProductOptions() {
                                     height: '24px',
                                 }}
                                 onChange={(e) => {
-                                    setIsAutoGenerateProductCode(e.target.checked);
+                                    setIsAutoGenerateItemCode(e.target.checked);
                                     if (e.target.checked) {
                                         setProductCode(
                                             (Math.random() + 1)
@@ -181,7 +138,7 @@ export function SetProductOptions() {
                             variant="outlined"
                             value={productCode}
                             onChange={(e) => {
-                                if (!isAutoGenerateProductCode) {
+                                if (!isAutoGenerateItemCode) {
                                     setProductCode(e.target.value);
                                 }
                             }}
@@ -191,77 +148,6 @@ export function SetProductOptions() {
                                 },
                             }}
                         />
-                    </Stack>
-
-                    <Stack spacing="6px" mb="40px">
-                        <Heading6>판매가</Heading6>
-                        <TextField
-                            fullWidth
-                            variant="outlined"
-                            sx={{
-                                '& .MuiInputBase-input': {
-                                    paddingRight: '4px',
-                                },
-                            }}
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <Typography
-                                            fontWeight="700"
-                                            fontSize="26px"
-                                            lineHeight="30.47px"
-                                        >
-                                            원
-                                        </Typography>
-                                    </InputAdornment>
-                                ),
-                                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                inputComponent: NumericFormatCustom as any,
-                            }}
-                            inputProps={{
-                                inputMode: 'numeric',
-                                pattern: '[0-9]*',
-                                sx: {
-                                    fontSize: '26px',
-                                    lineHeight: '30.47px',
-                                    textAlign: 'right',
-                                },
-                            }}
-                        />
-                    </Stack>
-
-                    <Stack spacing="6px" mb="40px">
-                        <Heading6>필수고시정보</Heading6>
-                        {필수고시정보Category ? (
-                            <Button variant="outlined" onClick={() => setIsDrawerOpen(true)}>
-                                <Stack direction="row" justifyContent="space-between" width="100%">
-                                    <Typography
-                                        fontWeight="400"
-                                        fontSize="26px"
-                                        lineHeight="30.47px"
-                                        color="#000"
-                                    >
-                                        {필수고시정보Category}
-                                    </Typography>
-                                    <Typography
-                                        fontWeight="400"
-                                        fontSize="26px"
-                                        lineHeight="30.47px"
-                                        color="#969696"
-                                    >
-                                        상세보기
-                                    </Typography>
-                                </Stack>
-                            </Button>
-                        ) : (
-                            <Button
-                                variant="outlined"
-                                startIcon={<AddIcon />}
-                                onClick={() => setIsDrawerOpen(true)}
-                            >
-                                필수고시정보 등록
-                            </Button>
-                        )}
                     </Stack>
 
                     <Stack spacing="6px" mb="40px">
@@ -313,23 +199,6 @@ export function SetProductOptions() {
                                 }}
                             />
                         </MuiButton>
-                    </Stack>
-
-                    <Stack spacing="6px" mb="40px">
-                        <Heading6>상태</Heading6>
-                        <Select
-                            value={status}
-                            onChange={(e) => setStatus(e.target.value as string)}
-                            sx={{
-                                '& .MuiSelect-select .notranslate::after': {
-                                    content: `"판매 상태를 선택해주세요."`,
-                                    color: '#898989',
-                                },
-                            }}
-                        >
-                            <MenuItem value="판매상태1">판매상태 1</MenuItem>
-                            <MenuItem value="판매상태2">판매상태 2</MenuItem>
-                        </Select>
                     </Stack>
                 </Stack>
             </Stack>
