@@ -53,6 +53,8 @@ export const Select = styled(MuiSelect)({
         fontWeight: '400',
         fontSize: '28px',
         minHeight: 'auto',
+        paddingLeft: 0,
+        paddingRight: 0,
     },
 });
 

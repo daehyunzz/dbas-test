@@ -1,12 +1,9 @@
-import MuiButton from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import MuiDrawer from '@mui/material/Drawer';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
-import MuiTextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/system';
+
+import { Button, MenuItem, Select, TextField } from '@components/Ui';
 
 const CATEGORIES = [
     '사무용기기(컴퓨터/노트북/프린터)',
@@ -28,30 +25,6 @@ const INFOS = [
     '이용기간',
     '최소 시스템 사양',
 ];
-
-const TextField = styled(MuiTextField)({
-    'marginTop': '6px',
-    '& .MuiOutlinedInput-root': {
-        'height': '64px',
-        '& fieldset': {
-            borderColor: '#000',
-        },
-    },
-    '& .MuiInputBase-input': {
-        fontWeight: '400',
-        fontSize: '28px',
-        lineHeight: '32.81px',
-    },
-});
-
-const Button = styled(MuiButton)({
-    fontWeight: '700',
-    fontSize: '28px',
-    lineHeight: '32.81px',
-    textAlign: 'center',
-    flexGrow: 1,
-    borderRadius: '0',
-});
 
 type DrawerProps = {
     open: boolean;
@@ -110,7 +83,13 @@ export function Drawer({ open, onClose, category, setCategory }: DrawerProps) {
                     </Select>
                     {category &&
                         INFOS.map((info) => (
-                            <TextField key={info} fullWidth placeholder={info} variant="outlined" />
+                            <TextField
+                                key={info}
+                                fullWidth
+                                placeholder={info}
+                                variant="outlined"
+                                sx={{ marginTop: '6px' }}
+                            />
                         ))}
                 </Stack>
                 <Stack height="85px" direction="row" justifyContent="space-between">

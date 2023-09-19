@@ -7,72 +7,13 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Box from '@mui/material/Box';
 import MuiButton from '@mui/material/Button';
 import InputAdornment from '@mui/material/InputAdornment';
-import MuiMenuItem from '@mui/material/MenuItem';
-import MuiSelect from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
-import MuiTextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 
+import { Button, MenuItem, Select, TextField } from '@components/Ui';
+
 import { Drawer } from './Drawer';
-
-const Button = styled(MuiButton)({
-    height: '64px',
-    fontWeight: '400',
-    fontSize: '26px',
-    lineHeight: '30.47px',
-    color: '#969696',
-    borderColor: '#000',
-    paddingLeft: '25px',
-    paddingRight: '25px',
-});
-
-const TextField = styled(MuiTextField)({
-    '& .MuiOutlinedInput-root': {
-        'minHeight': '64px',
-        '& fieldset': {
-            borderColor: '#000',
-        },
-    },
-    '& .MuiInputBase-input': {
-        fontWeight: '400',
-        fontSize: '28px',
-        lineHeight: '32.81px',
-        paddingLeft: '25px',
-        paddingRight: '25px',
-        paddingTop: '0',
-        paddingBottom: '0',
-    },
-
-    '& .MuiInputBase-multiline': {
-        paddingLeft: 0,
-        paddingRight: 0,
-    },
-});
-
-const Select = styled(MuiSelect)({
-    'paddingLeft': '25px',
-    'paddingRight': '25px',
-    'paddingTop': '0',
-    'paddingBottom': '0',
-    '&.MuiOutlinedInput-root': {
-        'height': '64px',
-        '& fieldset': {
-            borderColor: '#000',
-        },
-    },
-    '& .MuiInputBase-input.MuiSelect-select': {
-        fontWeight: '400',
-        fontSize: '28px',
-        minHeight: 'auto',
-    },
-});
-
-const MenuItem = styled(MuiMenuItem)({
-    fontWeight: '400',
-    fontSize: '28px',
-    lineHeight: '32.81px',
-});
 
 const Heading6 = styled(Typography)({
     fontWeight: '600',
