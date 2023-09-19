@@ -58,7 +58,7 @@ export function SetProductOptions() {
     const [isAutoGenerateProductCode, setIsAutoGenerateProductCode] = useState(false);
 
     return (
-        <Stack width="1500px">
+        <Stack width="1500px" mt="60px">
             <Drawer
                 open={isDrawerOpen}
                 onClose={() => setIsDrawerOpen(false)}
