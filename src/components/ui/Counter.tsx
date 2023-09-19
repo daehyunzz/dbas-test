@@ -5,9 +5,21 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
 type CounterProps = {
+    /**
+     * 카운터에 표시할 값
+     */
     value: number;
+    /**
+     * 값을 변경하는 함수
+     */
     onChange: (value: number) => void;
+    /**
+     * 최소값
+     */
     min?: number;
+    /**
+     * 최대값
+     */
     max?: number;
 };
 
