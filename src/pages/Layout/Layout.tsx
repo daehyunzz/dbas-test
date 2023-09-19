@@ -175,7 +175,7 @@ export const Layout: React.FC = () => {
                                                 >
                                                     {COMMON_CHILDREN.map((child) => {
                                                         return (
-                                                            <ListItemButton>
+                                                            <ListItemButton key={child.name}>
                                                                 {child.name}
                                                             </ListItemButton>
                                                         );
