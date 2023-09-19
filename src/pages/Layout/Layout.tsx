@@ -85,6 +85,7 @@ export const Layout: React.FC = () => {
                         }}
                         startIcon={<HomeOutlinedIcon sx={{ mr: '8px' }} />}
                     >
+
                         홈
                     </Button>
                     <Divider
@@ -210,6 +211,7 @@ export const Layout: React.FC = () => {
                         })}
                     </List>
                 </Stack>
+
                 <Box sx={{ width: '100%', height: '100%', overflow: 'auto' }}>
                     <Outlet />
                 </Box>
