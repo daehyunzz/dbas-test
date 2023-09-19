@@ -1,8 +1,8 @@
-import { PropsWithChildren, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { DragDropContext } from '@hello-pangea/dnd';
 
-export const DragDropContainer = ({ children }: PropsWithChildren) => {
+export const Dnd = () => {
     // using useCallback is optional
     const onBeforeCapture = useCallback(() => {
         /*...*/
@@ -28,7 +28,7 @@ export const DragDropContainer = ({ children }: PropsWithChildren) => {
             onDragUpdate={onDragUpdate}
             onDragEnd={onDragEnd}
         >
-            {children}
+            <div>Hello world</div>
         </DragDropContext>
     );
 };
