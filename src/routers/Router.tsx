@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Goods } from '@pages/Goods/Goods';
+import { New } from '@pages/Goods/New';
 import { Layout } from '@pages/Layout/Layout';
 import { NewProduct } from '@pages/Product/New';
 import { Product } from '@pages/Product/Product';
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
             { path: '/product', element: <Product /> },
             { path: '/product/new', element: <NewProduct /> },
             { path: '/goods', element: <Goods /> },
+            { path: '/goods/new', element: <New /> },
             // Add more route configurations as needed
         ],
     },
