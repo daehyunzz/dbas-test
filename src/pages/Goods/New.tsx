@@ -4,16 +4,15 @@ import { Box, styled } from '@mui/material';
 import { SetProductOptions } from '@components/MakeProduct/SetProductOptions';
 import { DragDropContainer } from '@components/dnd/DragDropContainer';
 
-const StyledNew = styled('div')`
-    display: flex;
-    flex-direction: column;
+const StyledNew = styled('div')({
+    display: 'flex',
+    flexDirection: 'column',
 
-    padding: 27px 60px;
-    box-sizing: border-box;
+    padding: '27px 60px',
 
-    width: 100%;
-    height: 100%;
-`;
+    width: '100%',
+    height: '100%',
+});
 
 export const New = () => {
     return (
