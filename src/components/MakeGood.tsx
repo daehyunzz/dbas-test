@@ -23,6 +23,8 @@ export function MakeProduct() {
     const [productCode, setProductCode] = useState('');
     const [isAutoGenerateItemCode, setIsAutoGenerateItemCode] = useState(false);
 
+    const [propertyFile, setPropertyFile] = useState<FileList | null>(null);
+
     return (
         <Stack width="1500px">
             <Stack direction="row" spacing="100px" mt="40px">
@@ -167,38 +169,65 @@ export function MakeProduct() {
                                 템플릿 다운로드
                             </MuiButton>
                         </Stack>
-                        <MuiButton
-                            component="label"
-                            variant="outlined"
-                            startIcon={<AddIcon />}
-                            sx={{
-                                height: '64px',
-                                fontWeight: '400',
-                                fontSize: '26px',
-                                lineHeight: '30.47px',
-                                color: '#969696',
-                                borderColor: '#000',
-                                paddingLeft: '25px',
-                                paddingRight: '25px',
-                            }}
-                        >
-                            여기에 속성 템플릿을 업로드해주세요.
-                            <Box
-                                component="input"
-                                type="file"
-                                sx={{
-                                    clip: 'rect(0 0 0 0)',
-                                    clipPath: 'inset(50%)',
-                                    height: 1,
-                                    overflow: 'hidden',
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    whiteSpace: 'nowrap',
-                                    width: 1,
-                                }}
-                            />
-                        </MuiButton>
+
+                        <Stack spacing="6px" mb="40px">
+                            {propertyFile ? (
+                                <Box
+                                    sx={{
+                                        borderRadius: '4px',
+                                        backgroundColor: '#00448D',
+                                        fontSize: '28px',
+                                        lineHeight: '32.81px',
+                                        color: '#fff',
+                                        width: '700px',
+                                        height: '64px',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                    }}
+                                >
+                                    {propertyFile[0].name}
+                                </Box>
+                            ) : (
+                                <MuiButton
+                                    component="label"
+                                    variant="outlined"
+                                    startIcon={<AddIcon />}
+                                    sx={{
+                                        height: '64px',
+                                        fontWeight: '400',
+                                        fontSize: '26px',
+                                        lineHeight: '30.47px',
+                                        color: '#969696',
+                                        borderColor: '#000',
+                                        paddingLeft: '25px',
+                                        paddingRight: '25px',
+                                    }}
+                                >
+                                    여기에 속성 템플릿을 업로드해주세요.
+                                    <Box
+                                        component="input"
+                                        type="file"
+                                        sx={{
+                                            clip: 'rect(0 0 0 0)',
+                                            clipPath: 'inset(50%)',
+                                            height: 1,
+                                            overflow: 'hidden',
+                                            position: 'absolute',
+                                            bottom: 0,
+                                            left: 0,
+                                            whiteSpace: 'nowrap',
+                                            width: 1,
+                                        }}
+                                        onChange={(e) => {
+                                            if (e.target.files) {
+                                                setPropertyFile(e.target.files);
+                                            }
+                                        }}
+                                    />
+                                </MuiButton>
+                            )}
+                        </Stack>
                     </Stack>
                 </Stack>
             </Stack>
