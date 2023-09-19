@@ -59,6 +59,7 @@ export const Layout: React.FC = () => {
                             'width': '260px',
                             'height': '42px',
                             'paddingX': '20px',
+                            'fontSize': '20px',
                             'backgroundColor': 'none',
                             '&:hover': {
                                 fontWeight: 'bold',
