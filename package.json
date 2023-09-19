@@ -14,14 +14,17 @@
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@hello-pangea/dnd": "^16.3.0",
+        "@mui/icons-material": "^5.14.9",
         "@mui/material": "^5.14.10",
         "mobx": "^6.10.2",
         "mobx-react-lite": "^4.0.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-number-format": "^5.3.1",
         "react-router-dom": "^6.15.0"
     },
     "devDependencies": {
+        "@faker-js/faker": "^8.0.2",
         "@trivago/prettier-plugin-sort-imports": "^4.2.0",
         "@types/node": "^20.6.0",
         "@types/react": "^18.2.15",

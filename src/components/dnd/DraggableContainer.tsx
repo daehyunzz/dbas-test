@@ -1,18 +1,49 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Draggable } from '@hello-pangea/dnd';
+import { PropsWithChildren } from 'react';
 
-export const DraggableContainer = () => {
+import { Draggable } from '@hello-pangea/dnd';
+import { styled } from '@mui/material';
+
+interface Props {
+    id: string;
+    index: number;
+    width?: string;
+    height?: string;
+}
+
+export const DraggableContainer = ({
+    id,
+    index,
+    width,
+    height,
+    children,
+}: PropsWithChildren<Props>) => {
     return (
-        <Draggable draggableId="draggable-1" index={0}>
-            {(provided) => (
-                <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
+        <Draggable index={index} key={id} draggableId={`${id}`}>
+            {(draggableProvider) => (
+                <StyledDraggableContainer
+                    ref={draggableProvider.innerRef}
+                    {...draggableProvider.draggableProps}
+                    {...draggableProvider.dragHandleProps}
+                    sx={{
+                        width: `${width ?? '467px'}`,
+                        height: `${height ?? '140px'}`,
+                    }}
                 >
-                    <h4>My draggable</h4>
-                </div>
+                    {children}
+                </StyledDraggableContainer>
             )}
         </Draggable>
     );
 };
+
+const StyledDraggableContainer = styled('li')`
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    width: 467px;
+    height: 140px;
+
+    border: 1px solid rgba(0, 0, 0, 0.3);
+`;
