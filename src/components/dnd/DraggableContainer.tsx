@@ -25,7 +25,7 @@ export const DraggableContainer = ({
                     {...draggableProvider.draggableProps}
                     {...draggableProvider.dragHandleProps}
                     sx={{
-                        width: `${width ?? '467px'}`,
+                        width: `${width ?? '466px'}`,
                         height: `${height ?? '140px'}`,
                     }}
                 >
@@ -44,6 +44,8 @@ const StyledDraggableContainer = styled('li')`
 
     width: 467px;
     height: 140px;
+
+    border-box: box-sizing;
 
     border: 1px solid rgba(0, 0, 0, 0.3);
 `;

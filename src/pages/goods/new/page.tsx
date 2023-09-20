@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { useCallback, useState } from 'react';
+
 import { styled } from '@mui/material';
 
 import { SetGoodsOptions } from '@components/MakeGoods/SetGoodsOptions';
@@ -16,11 +18,15 @@ const StyledNew = styled('div')({
 });
 
 export const New = () => {
+    const [visible, setVisible] = useState<boolean>(false);
+    const show = useCallback(() => {
+        setVisible(true);
+    }, []);
     return (
         <StyledNew>
             <Header title="상품 등록" />
-            <DragDropContainer />
-            <SetGoodsOptions />
+            <DragDropContainer show={show} />
+            {visible && <SetGoodsOptions />}
         </StyledNew>
     );
 };
