@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 
 import { Tables } from './Tables';
 
-export const Product = () => {
+export const Goods = () => {
     const navigate = useNavigate();
     return (
         <Box
@@ -12,14 +12,14 @@ export const Product = () => {
                 width: '100%',
                 height: '90%',
                 overFlow: 'auto',
-                paddingX: '50px',
-                paddingY: '20px',
+                paddingX: '60px',
+                paddingY: '27px',
                 display: 'flex',
                 flexFlow: 'column',
             }}
         >
             <Typography sx={{ fontSize: '32px', lineHeight: '37.5px', fontWeight: '700' }}>
-                제품 관리
+                상품 관리
             </Typography>
             <hr />
             <Box
@@ -86,7 +86,7 @@ export const Product = () => {
                         <Box
                             sx={{ margin: 'auto' }}
                             role="button"
-                            onClick={() => navigate('/product/new')}
+                            onClick={() => navigate('/goods/new')}
                         >
                             개별 등록
                         </Box>

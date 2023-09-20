@@ -1,12 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Goods } from '@pages/Goods/Goods';
-import { New } from '@pages/Goods/New';
-import { Layout } from '@pages/Layout/Layout';
-import { NewProduct } from '@pages/Product/New';
-import { Product } from '@pages/Product/Product';
+import { New } from '@pages/goods/new/page';
+import { Goods } from '@pages/goods/page';
+import { NewProduct } from '@pages/product/new/page';
+import { Product } from '@pages/product/page';
 
-import { Home } from '../pages/Home/Home';
+import { Layout } from '@/layout';
+
+import { Home } from './pages/home/page';
 
 // lazy import 사용 시 WAPL Shell 배포 불가.
 

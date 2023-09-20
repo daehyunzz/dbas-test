@@ -16,7 +16,7 @@ import {
     Stack,
 } from '@mui/material';
 
-import logo from '../../assets/focusLogo.svg';
+import logo from '@/assets/focusLogo.svg';
 
 const LINKS = [
     { name: '제품 관리', children: false, url: '/product' },
@@ -85,7 +85,6 @@ export const Layout: React.FC = () => {
                         }}
                         startIcon={<HomeOutlinedIcon sx={{ mr: '8px' }} />}
                     >
-
                         홈
                     </Button>
                     <Divider

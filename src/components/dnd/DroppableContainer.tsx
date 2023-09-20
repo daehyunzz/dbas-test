@@ -5,11 +5,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, Divider, IconButton, Stack, Typography, styled } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 
-import { MenuItem, Select, TextField } from '@components/Ui';
 import { Counter } from '@components/ui/Counter';
+import { MenuItem } from '@components/ui/MenuItem';
+import { Select } from '@components/ui/Select';
+import { TextField } from '@components/ui/TextField';
 
 import { 등록, 상품, 제품 } from '@/interfaces/product';
-import { productStore } from '@/store/product-store';
+import { productStore } from '@/store/productStore';
 
 import { DraggableContainer } from './DraggableContainer';
 

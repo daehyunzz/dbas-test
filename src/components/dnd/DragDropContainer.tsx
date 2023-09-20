@@ -2,7 +2,7 @@ import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 import { styled } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 
-import { productStore, 리스트 } from '@/store/product-store';
+import { productStore, 리스트 } from '@/store/productStore';
 
 import { ProductContainer, ProductWithPrice, RegisterContainer } from './DroppableContainer';
 

@@ -8,7 +8,9 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 
-import { MenuItem, Select, TextField } from '@components/Ui';
+import { MenuItem } from './ui/MenuItem';
+import { Select } from './ui/Select';
+import { TextField } from './ui/TextField';
 
 const Heading6 = styled(Typography)({
     fontWeight: '600',
@@ -22,6 +24,8 @@ export function MakeProduct() {
     const [category, setCategory] = useState('');
     const [productCode, setProductCode] = useState('');
     const [isAutoGenerateItemCode, setIsAutoGenerateItemCode] = useState(false);
+
+    const [images, setImages] = useState<FileList | null>(null);
 
     const [propertyFile, setPropertyFile] = useState<FileList | null>(null);
 
@@ -69,38 +73,67 @@ export function MakeProduct() {
 
                     <Stack spacing="6px" mb="40px">
                         <Heading6>이미지</Heading6>
-                        <MuiButton
-                            component="label"
-                            variant="outlined"
-                            sx={{
-                                width: '140px',
-                                height: '140px',
-                                color: 'black',
-                                borderColor: 'black',
-                            }}
-                        >
-                            <Stack justifyContent="center" alignItems="center">
-                                <AddIcon />
-                                <Typography fontWeight="400" fontSize="20px" lineHeight="23.44px">
-                                    사진추가
-                                </Typography>
-                            </Stack>
-                            <Box
-                                component="input"
-                                type="file"
+                        <Stack direction="row" spacing="8px">
+                            <MuiButton
+                                component="label"
+                                variant="outlined"
                                 sx={{
-                                    clip: 'rect(0 0 0 0)',
-                                    clipPath: 'inset(50%)',
-                                    height: 1,
-                                    overflow: 'hidden',
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    whiteSpace: 'nowrap',
-                                    width: 1,
+                                    width: '140px',
+                                    height: '140px',
+                                    color: 'black',
+                                    borderColor: 'black',
                                 }}
-                            />
-                        </MuiButton>
+                            >
+                                <Stack justifyContent="center" alignItems="center">
+                                    <AddIcon />
+                                    <Typography
+                                        fontWeight="400"
+                                        fontSize="20px"
+                                        lineHeight="23.44px"
+                                    >
+                                        사진추가
+                                    </Typography>
+                                </Stack>
+                                <Box
+                                    component="input"
+                                    type="file"
+                                    sx={{
+                                        clip: 'rect(0 0 0 0)',
+                                        clipPath: 'inset(50%)',
+                                        height: 1,
+                                        overflow: 'hidden',
+                                        position: 'absolute',
+                                        bottom: 0,
+                                        left: 0,
+                                        whiteSpace: 'nowrap',
+                                        width: 1,
+                                    }}
+                                    accept="image/*"
+                                    multiple
+                                    onChange={(e) => {
+                                        if (e.target.files) {
+                                            setImages(e.target.files);
+                                        }
+                                    }}
+                                />
+                            </MuiButton>
+                            {images &&
+                                Array.from(images).map((image) => (
+                                    <Box
+                                        key={image.name}
+                                        component="img"
+                                        src={URL.createObjectURL(image)}
+                                        alt={image.name}
+                                        width="140px"
+                                        height="140px"
+                                        style={{
+                                            objectFit: 'cover',
+                                            borderRadius: '4px',
+                                            border: '1px solid #000',
+                                        }}
+                                    />
+                                ))}
+                        </Stack>
                     </Stack>
                 </Stack>
                 <Stack width="700px">

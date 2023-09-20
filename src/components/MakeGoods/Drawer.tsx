@@ -3,7 +3,10 @@ import MuiDrawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { Button, MenuItem, Select, TextField } from '@components/Ui';
+import { Button } from '@components/ui/Button';
+import { MenuItem } from '@components/ui/MenuItem';
+import { Select } from '@components/ui/Select';
+import { TextField } from '@components/ui/TextField';
 
 const CATEGORIES = [
     '사무용기기(컴퓨터/노트북/프린터)',

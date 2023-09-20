@@ -11,7 +11,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 
-import { Button, MenuItem, Select, TextField } from '@components/Ui';
+import { Button } from '@components/ui/Button';
+import { MenuItem } from '@components/ui/MenuItem';
+import { Select } from '@components/ui/Select';
+import { TextField } from '@components/ui/TextField';
 
 import { Drawer } from './Drawer';
 

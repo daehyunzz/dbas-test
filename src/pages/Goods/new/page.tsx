@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, styled } from '@mui/material';
+import { styled } from '@mui/material';
 
 import { SetGoodsOptions } from '@components/MakeGoods/SetGoodsOptions';
 import { DragDropContainer } from '@components/dnd/DragDropContainer';
+import { Header } from '@components/ui/Header';
 
 const StyledNew = styled('div')({
     display: 'flex',
@@ -21,21 +22,5 @@ export const New = () => {
             <DragDropContainer />
             <SetGoodsOptions />
         </StyledNew>
-    );
-};
-
-const Header = ({ title }: { title: string }) => {
-    return (
-        <Box
-            sx={{
-                height: '85px',
-                width: '100%',
-                fontSize: '32px',
-                fontWeight: 700,
-                borderBottom: '1px solid black',
-            }}
-        >
-            {title}
-        </Box>
     );
 };
