@@ -68,40 +68,180 @@ export const Status = () => {
     };
 
     return (
-        <Stack direction="column">
-            <Stack direction="row">
-                <Typography>잠재 고객</Typography>
-                <Typography>잠재 고객</Typography>
-                <Typography>잠재 고객</Typography>
+        <Stack direction="column" width="100%" px="37px">
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+                sx={{
+                    'height': '61px',
+                    'overflow': 'hidden',
+                    'borderRadius': '9999px',
+                    '& > *': {
+                        flexGrow: 1,
+                        fontSize: '24px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    },
+                }}
+            >
+                <Box
+                    sx={{
+                        'bgcolor': 'rgba(0, 68, 141, 1)',
+                        'color': 'rgba(255, 255, 255, 1)',
+                        'fontWeight': '700',
+                        'position': 'relative',
+                        '&:after': {
+                            content: '""',
+                            zIndex: 1,
+                            position: 'absolute',
+                            top: '0',
+                            left: 'calc(100% - 10px)',
+                            height: '100%',
+                            borderTop: '30px solid #fff',
+                            borderBottom: '30px solid #fff',
+                            borderLeft: '15px solid rgba(0, 68, 141, 1)',
+                        },
+                    }}
+                >
+                    잠재 고객
+                </Box>
+                <Box
+                    sx={{
+                        'bgcolor': 'rgba(243, 243, 243, 1)',
+                        'color': 'rgba(0, 0, 0, 1)',
+                        'fontWeight': '500',
+                        'position': 'relative',
+                        '&:before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: '0',
+                            left: '3px',
+                            height: '100%',
+                            borderTop: '30px solid rgba(243, 243, 243, 1)',
+                            borderBottom: '30px solid rgba(243, 243, 243, 1)',
+                            borderLeft: '15px solid #fff',
+                        },
+                        '&:after': {
+                            content: '""',
+                            position: 'absolute',
+                            zIndex: 1,
+                            top: '0',
+                            left: 'calc(100% - 10px)',
+                            height: '100%',
+                            borderTop: '30px solid #fff',
+                            borderBottom: '30px solid #fff',
+                            borderLeft: '15px solid rgba(243, 243, 243, 1)',
+                        },
+                    }}
+                >
+                    일반 고객
+                </Box>
+                <Box
+                    sx={{
+                        'bgcolor': 'rgba(243, 243, 243, 1)',
+                        'color': 'rgba(0, 0, 0, 1)',
+                        'fontWeight': '500',
+                        'position': 'relative',
+                        '&:before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: '0',
+                            left: '3px',
+                            height: '100%',
+                            borderTop: '30px solid rgba(243, 243, 243, 1)',
+                            borderBottom: '30px solid rgba(243, 243, 243, 1)',
+                            borderLeft: '15px solid #fff',
+                        },
+                    }}
+                >
+                    충성 고객
+                </Box>
             </Stack>
-            <Stack direction="row" justifyContent="space-between">
+            <Stack direction="row" mt="34px" px="29px" spacing="96px">
                 {INFO_ITEMS.map((item) => (
                     <InfoItem title={item.title} content={item.content} key={item.title} />
                 ))}
             </Stack>
-            <Tabs value={currentTab} onChange={handleChange}>
+            <Tabs
+                value={currentTab}
+                onChange={handleChange}
+                sx={{
+                    'mt': '59px',
+                    'borderBottom': '1px solid rgba(0, 0, 0, 0.3)',
+
+                    '& .MuiTabs-indicator': {
+                        backgroundColor: 'rgba(0, 68, 141, 1)',
+                        height: '4px',
+                    },
+                    '& .MuiTab-root': {
+                        paddingX: '23px',
+                        paddingY: '10px',
+                        minWidth: '0',
+                        fontSize: '26px',
+                        opacity: '0.3',
+                        fontWeight: '400',
+                        color: 'rgba(0, 0, 0, 1)',
+                    },
+                    '& .Mui-selected': {
+                        fontWeight: '700',
+                        opacity: '1',
+                    },
+                }}
+            >
                 <Tab label="활동" />
                 <Tab label="세부 사항" />
                 <Tab label="일정" />
                 <Tab label="노트" />
             </Tabs>
             <CustomTabPanel value={currentTab} index={0}>
-                <Select value="전체">
-                    <MenuItem value="전체">전체</MenuItem>
-                </Select>
-                {SCHEDULE_ITEMS.map(({ header, items }) => (
-                    <Stack direction="column">
-                        <Typography>{header}</Typography>
-                        {items.map((item) => (
-                            <ScheduleCard
-                                title={item.title}
-                                content={item.content}
-                                date={item.date}
-                                name={item.name}
-                            />
+                <Stack direction="column" pt="40px">
+                    <Select
+                        value="전체"
+                        sx={{
+                            'paddingLeft': '25px',
+                            'paddingRight': '25px',
+                            'paddingTop': '0',
+                            'paddingBottom': '0',
+                            'width': '149px',
+                            'alignSelf': 'flex-start',
+                            '&.MuiOutlinedInput-root': {
+                                'height': '55px',
+                                '& fieldset': {
+                                    borderColor: '#000',
+                                },
+                            },
+                            '& .MuiInputBase-input.MuiSelect-select': {
+                                fontWeight: '400',
+                                fontSize: '28px',
+                                minHeight: 'auto',
+                                paddingLeft: 0,
+                                paddingRight: 0,
+                            },
+                        }}
+                    >
+                        <MenuItem value="전체">전체</MenuItem>
+                    </Select>
+                    <Stack direction="column" mt="23px" spacing="7px">
+                        {SCHEDULE_ITEMS.map(({ header, items }) => (
+                            <Stack direction="column">
+                                <Typography fontWeight="500" fontSize="24px" lineHeight="36px">
+                                    {header}
+                                </Typography>
+                                <Stack direction="column" mt="9px" spacing="12px">
+                                    {items.map((item) => (
+                                        <ScheduleCard
+                                            title={item.title}
+                                            content={item.content}
+                                            date={item.date}
+                                            name={item.name}
+                                        />
+                                    ))}
+                                </Stack>
+                            </Stack>
                         ))}
                     </Stack>
-                ))}
+                </Stack>
             </CustomTabPanel>
         </Stack>
     );
