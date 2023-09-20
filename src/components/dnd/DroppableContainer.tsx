@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, Divider, IconButton, Stack, Typography, styled } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 
+import { Button } from '@components/ui/Button';
 import { Counter } from '@components/ui/Counter';
 import { MenuItem } from '@components/ui/MenuItem';
 import { Select } from '@components/ui/Select';
@@ -22,7 +23,24 @@ interface Props<T> {
 }
 
 const Title = ({ title }: { title: string }) => {
-    return <title>{title}</title>;
+    return (
+        <Typography
+            sx={{
+                height: '33px',
+                top: '182px',
+                left: '370px',
+                fontFamily: 'Roboto',
+                fontSize: '28px',
+                fontWeight: '700',
+                lineHeight: '33px',
+                letterSpacing: '0.01em',
+                textAlign: 'left',
+                marginBottom: '14px',
+            }}
+        >
+            {title.replace('_', ' ')}
+        </Typography>
+    );
 };
 
 export const ProductContainer = ({ id, title, list }: Props<제품>) => {
@@ -78,10 +96,11 @@ export const ProductContainer = ({ id, title, list }: Props<제품>) => {
                                     paddingLeft: 0,
                                     paddingRight: 0,
                                 },
+                                'width': '100%',
                             }}
                         >
                             {['최신 등록순', '최저가순'].map((menu) => (
-                                <MenuItem value={menu} sx={{ width: '28px' }}>
+                                <MenuItem value={menu} key={menu}>
                                     {menu}
                                 </MenuItem>
                             ))}
@@ -183,7 +202,7 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
                                 setLabel1(value as string);
                             }}
                             sx={{
-                                'width': '180px',
+                                'width': '188px',
                                 'height': '60px',
                                 '& .MuiInputBase-input.MuiSelect-select': {
                                     fontWeight: '400',
@@ -195,7 +214,7 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
                             }}
                         >
                             {['최신 등록순', '최저가순'].map((menu) => (
-                                <MenuItem value={menu} sx={{ width: '28px' }}>
+                                <MenuItem value={menu} key={menu}>
                                     {menu}
                                 </MenuItem>
                             ))}
@@ -220,7 +239,7 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
                             }}
                         >
                             {['최근 일주일', '최근 한달'].map((menu) => (
-                                <MenuItem value={menu} sx={{ width: '28px' }} key={menu}>
+                                <MenuItem value={menu} key={menu}>
                                     {menu}
                                 </MenuItem>
                             ))}
@@ -299,6 +318,10 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
 };
 
 export const RegisterContainer = observer(({ id, title, list }: Props<등록>) => {
+    const scrollToProductSetting = () => {
+        // scrollIntoView
+    };
+
     const handleChange = (id: string) => (value: number) => {
         console.log('증감', value);
         productStore.등록_수량_업데이트(id, value);
@@ -329,87 +352,111 @@ export const RegisterContainer = observer(({ id, title, list }: Props<등록>) =
                             </Typography>
                         </Stack>
                     )}
-                    {list.map((element, index) => (
-                        <DraggableContainer
-                            id={element.id}
-                            key={element.id}
-                            index={index}
-                            width="467px"
-                            height="222px"
-                        >
-                            <Stack>
-                                <Stack direction="row">
-                                    <img
-                                        alt="상품 이미지"
-                                        src={element.imageSrc}
-                                        width="139px"
-                                        height="137px"
-                                    />
-                                    <Stack sx={{ width: '100%' }} justifyContent="start">
-                                        <Box
-                                            sx={{
-                                                height: '100%',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'start',
-                                                gap: '20px',
-                                            }}
-                                        >
-                                            <Typography sx={{ fontSize: '26px', fontWeight: 400 }}>
-                                                제품명
-                                            </Typography>
-                                            <Typography sx={{ fontSize: '26px', fontWeight: 700 }}>
-                                                {element.name}
-                                            </Typography>
-                                        </Box>
-                                        <Box
-                                            sx={{
-                                                height: '100%',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'start',
-                                                gap: '20px',
-                                            }}
-                                        >
-                                            {element.price && (
-                                                <>
-                                                    <Typography
-                                                        sx={{ fontSize: '26px', fontWeight: 400 }}
-                                                    >
-                                                        상품가
-                                                    </Typography>
+                    <Stack sx={{ gap: '10px', overflowY: 'auto', flex: 1, paddingBottom: '10px' }}>
+                        {list.map((element, index) => (
+                            <DraggableContainer
+                                id={element.id}
+                                key={element.id}
+                                index={index}
+                                height="222px"
+                            >
+                                <Stack sx={{ overflowY: 'auto' }}>
+                                    <Stack direction="row" sx={{ gap: '10px' }}>
+                                        <img
+                                            alt="상품 이미지"
+                                            src={element.imageSrc}
+                                            width="139px"
+                                            height="137px"
+                                        />
+                                        <Stack sx={{ width: '100%' }} justifyContent="start">
+                                            <Box
+                                                sx={{
+                                                    height: '100%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'start',
+                                                    gap: '20px',
+                                                }}
+                                            >
+                                                <Typography
+                                                    sx={{ fontSize: '26px', fontWeight: 400 }}
+                                                >
+                                                    제품명
+                                                </Typography>
+                                                <Typography
+                                                    sx={{ fontSize: '26px', fontWeight: 700 }}
+                                                >
+                                                    {element.name}
+                                                </Typography>
+                                            </Box>
+                                            <Box
+                                                sx={{
+                                                    height: '100%',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'start',
+                                                    gap: '20px',
+                                                }}
+                                            >
+                                                {element.price && (
+                                                    <>
+                                                        <Typography
+                                                            sx={{
+                                                                fontSize: '26px',
+                                                                fontWeight: 400,
+                                                            }}
+                                                        >
+                                                            상품가
+                                                        </Typography>
 
-                                                    <Typography
-                                                        sx={{ fontSize: '26px', fontWeight: 700 }}
-                                                    >
-                                                        {element.price.toLocaleString()}원
-                                                    </Typography>
-                                                </>
-                                            )}
-                                        </Box>
+                                                        <Typography
+                                                            sx={{
+                                                                fontSize: '26px',
+                                                                fontWeight: 700,
+                                                            }}
+                                                        >
+                                                            {element.price.toLocaleString()}원
+                                                        </Typography>
+                                                    </>
+                                                )}
+                                            </Box>
+                                        </Stack>
+                                    </Stack>
+                                    <Stack
+                                        direction="row"
+                                        alignItems="center"
+                                        justifyContent="center"
+                                        sx={{
+                                            height: '92px',
+                                            width: '100%',
+                                        }}
+                                    >
+                                        <Typography sx={{ fontSize: '26px', fontWeight: 400 }}>
+                                            개수 조절
+                                        </Typography>
+                                        <Counter
+                                            value={productStore.등록_수량_가져오기(element.id)}
+                                            onChange={handleChange(element.id)}
+                                        />
                                     </Stack>
                                 </Stack>
-                                <Stack
-                                    direction="row"
-                                    alignItems="center"
-                                    justifyContent="center"
-                                    sx={{
-                                        height: '92px',
-                                        width: '100%',
-                                    }}
-                                >
-                                    <Typography sx={{ fontSize: '26px', fontWeight: 400 }}>
-                                        개수 조절
-                                    </Typography>
-                                    <Counter
-                                        value={productStore.등록_수량_가져오기(element.id)}
-                                        onChange={handleChange(element.id)}
-                                    />
-                                </Stack>
-                            </Stack>
-                        </DraggableContainer>
-                    ))}
-                    {droppableProvider.placeholder}
+                            </DraggableContainer>
+                        ))}
+                    </Stack>
+                    {list.length > 0 && (
+                        <Button
+                            onClick={scrollToProductSetting}
+                            fullWidth
+                            variant="contained"
+                            sx={{
+                                background: '#00448D',
+                                height: '78px',
+                                color: '#ffffff',
+                            }}
+                        >
+                            선택 완료 및 상품 설정하기
+                        </Button>
+                    )}
                 </StyledDroppableContainer>
             )}
         </Droppable>
@@ -417,11 +464,14 @@ export const RegisterContainer = observer(({ id, title, list }: Props<등록>) =
 });
 
 const StyledDroppableContainer = styled('ul')`
+    position: relative;
     display: flex;
     flex-direction: column;
 
     width: 488px;
     height: 742px;
+
+    overflow-y: auto;
 
     margin: 0;
     padding: 10px;

@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import { CustomerDetail } from '@pages/customer/detail/page';
 import { Customer } from '@pages/customer/page';
+import { DashBoard } from '@pages/dashboard/page';
 import { New } from '@pages/goods/new/page';
 import { Goods } from '@pages/goods/page';
 import { NewProduct } from '@pages/product/new/page';
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
             { path: '/goods/new', element: <New /> },
             { path: '/customer', element: <Customer /> },
             { path: '/customer/detail', element: <CustomerDetail /> },
+            { path: '/customer/dashboard', element: <DashBoard /> },
             // Add more route configurations as needed
         ],
     },
