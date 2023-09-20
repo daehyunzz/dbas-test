@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, styled } from '@mui/material';
 
-import { SetProductOptions } from '@components/MakeProduct/SetProductOptions';
+import { SetGoodsOptions } from '@components/MakeGoods/SetGoodsOptions';
 import { DragDropContainer } from '@components/dnd/DragDropContainer';
 
 const StyledNew = styled('div')({
@@ -19,7 +19,7 @@ export const New = () => {
         <StyledNew>
             <Header title="상품 등록" />
             <DragDropContainer />
-            <SetProductOptions />
+            <SetGoodsOptions />
         </StyledNew>
     );
 };

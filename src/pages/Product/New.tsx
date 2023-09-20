@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { Button, Divider, Stack, Typography } from '@mui/material';
 
-import { MakeProduct } from '@components/MakeGood';
+import { MakeProduct } from '@components/MakeProduct';
 
 export const NewProduct = () => {
     return (

@@ -49,7 +49,7 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
     }
 );
 
-export function SetProductOptions() {
+export function SetGoodsOptions() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const [category, setCategory] = useState('');
