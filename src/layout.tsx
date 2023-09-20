@@ -18,19 +18,59 @@ import {
 
 import logo from '@/assets/focusLogo.svg';
 
-const LINKS = [
+type NavLink = {
+    name: string;
+    children: false;
+    url: string;
+};
+
+type LinkWithChildren = {
+    name: string;
+    children: NavLink[];
+};
+
+const LINKS: (NavLink | LinkWithChildren)[] = [
     { name: '제품 관리', children: false, url: '/product' },
     { name: '상품 관리', children: false, url: '/goods' },
-    { name: '판매/주문 관리', children: true },
-    { name: '견적/청구 관리', children: true },
-    { name: '매출 관리', children: true },
-    { name: '고객 관리', children: true },
-    { name: '마케팅 관리', children: true },
-];
-
-const COMMON_CHILDREN = [
-    { name: '상품 관리', url: '/goods' },
-    { name: '상품 등록', url: '/goods/create' },
+    {
+        name: '판매/주문 관리',
+        children: [
+            { name: '고객 등록', children: false, url: '/customer/new' },
+            { name: '고객 조회', children: false, url: '/customer' },
+            { name: '고객 대시보드', children: false, url: '/customer/dashboard' },
+        ],
+    },
+    {
+        name: '견적/청구 관리',
+        children: [
+            { name: '고객 등록', children: false, url: '/customer/new' },
+            { name: '고객 조회', children: false, url: '/customer' },
+            { name: '고객 대시보드', children: false, url: '/customer/dashboard' },
+        ],
+    },
+    {
+        name: '매출 관리',
+        children: [
+            { name: '고객 등록', children: false, url: '/customer/new' },
+            { name: '고객 조회', children: false, url: '/customer' },
+            { name: '고객 대시보드', children: false, url: '/customer/dashboard' },
+        ],
+    },
+    {
+        name: '고객 관리',
+        children: [
+            { name: '고객 등록', children: false, url: '/customer/new' },
+            { name: '고객 조회', children: false, url: '/customer' },
+            { name: '고객 대시보드', children: false, url: '/customer/dashboard' },
+        ],
+    },
+    {
+        name: '마케팅 관리',
+        children: [
+            { name: '타겟 고객 관리', children: false, url: '/marketing/customer-management' },
+            { name: '마케팅 콘텐츠 관리 ', children: false, url: '/marketing/contents-management' },
+        ],
+    },
 ];
 
 const Header = () => {
@@ -97,7 +137,7 @@ export const Layout: React.FC = () => {
                     />
                     <List>
                         {LINKS.map((link) => {
-                            const isActive = link.url && location.pathname.startsWith(link.url);
+                            const isActive = 'url' in link ? link.url === location.pathname : false;
                             return (
                                 <ListItem
                                     key={link.name}
@@ -173,9 +213,13 @@ export const Layout: React.FC = () => {
                                                         paddingLeft: '20px',
                                                     }}
                                                 >
-                                                    {COMMON_CHILDREN.map((child) => {
+                                                    {link.children.map((child) => {
                                                         return (
-                                                            <ListItemButton key={child.name}>
+                                                            <ListItemButton
+                                                                key={child.name}
+                                                                component={Link}
+                                                                to={child.url}
+                                                            >
                                                                 {child.name}
                                                             </ListItemButton>
                                                         );
@@ -186,7 +230,7 @@ export const Layout: React.FC = () => {
                                     ) : (
                                         <Stack
                                             component={Link}
-                                            to={link.url!}
+                                            to={link.url}
                                             direction="row"
                                             alignItems="center"
                                             width="100%"
