@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { Edit } from '@mui/icons-material';
+import { CalendarMonth, Mail, Message, Note, Phone } from '@mui/icons-material';
 import { Avatar, Button, Divider, IconButton, Stack, Typography } from '@mui/material';
 
 import { InfoItem } from './InfoItem';
@@ -30,12 +30,16 @@ const IconAction = ({ icon, text }: IconActionProps) => {
     );
 };
 
+const iconSx = {
+    width: '31px',
+    height: '31px',
+};
 const ICON_BUTTONS = [
-    { icon: <Edit />, text: '수정1' },
-    { icon: <Edit />, text: '수정2' },
-    { icon: <Edit />, text: '수정3' },
-    { icon: <Edit />, text: '수정4' },
-    { icon: <Edit />, text: '수정5' },
+    { icon: <Phone sx={iconSx} />, text: '연락처' },
+    { icon: <Message sx={iconSx} />, text: '메세지' },
+    { icon: <Mail sx={iconSx} />, text: '이메일' },
+    { icon: <CalendarMonth sx={iconSx} />, text: '일정' },
+    { icon: <Note sx={iconSx} />, text: '노트' },
 ];
 
 const INFO_ITEMS = [
