@@ -224,7 +224,7 @@ export const Status = () => {
                     </Select>
                     <Stack direction="column" mt="23px" spacing="7px">
                         {SCHEDULE_ITEMS.map(({ header, items }) => (
-                            <Stack direction="column">
+                            <Stack direction="column" key={header}>
                                 <Typography fontWeight="500" fontSize="24px" lineHeight="36px">
                                     {header}
                                 </Typography>
@@ -235,6 +235,7 @@ export const Status = () => {
                                             content={item.content}
                                             date={item.date}
                                             name={item.name}
+                                            key={item.title}
                                         />
                                     ))}
                                 </Stack>

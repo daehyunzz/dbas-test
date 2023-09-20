@@ -2,6 +2,9 @@ import type { ReactNode } from 'react';
 
 import { CalendarMonth, Mail, Message, Note, Phone } from '@mui/icons-material';
 import { Avatar, Button, Divider, IconButton, Stack, Typography } from '@mui/material';
+import { observer } from 'mobx-react-lite';
+
+import { CampaignStore } from '@pages/customer/detail/campaign.store';
 
 import { InfoItem } from './InfoItem';
 
@@ -51,7 +54,8 @@ const INFO_ITEMS = [
     { title: '영업 담당자', content: '김영업 영업 팀장' },
 ];
 
-export const Info = () => {
+export const Info = observer(() => {
+    const { setIsDialogOpen, selectedCampaignId } = CampaignStore;
     return (
         <Stack
             direction="column"
@@ -81,18 +85,33 @@ export const Info = () => {
                 </Stack>
                 <Button
                     sx={{
-                        mt: '10px',
-                        padding: '0px',
-                        fontSize: '15px',
-                        fontWeight: '600',
-                        boxShadow: 'none',
-                        width: '115px',
-                        height: '36px',
-                        bgcolor: 'rgba(104, 165, 255, 1)',
+                        'mt': '10px',
+                        'padding': '0px',
+                        'fontSize': '24px',
+                        'lineHeight': '28.13px',
+                        'fontWeight': '600',
+                        'boxShadow': 'none',
+                        'width': '121px',
+                        'height': '67px',
+                        'bgcolor': selectedCampaignId
+                            ? 'rgba(234, 37, 37, 1)'
+                            : 'rgba(104, 165, 255, 1)',
+                        'textAlign': 'center',
+                        'whiteSpace': 'pre-wrap',
+                        '&:hover': {
+                            bgcolor: selectedCampaignId
+                                ? 'rgba(234, 37, 37, 1)'
+                                : 'rgba(104, 165, 255, 1)',
+                        },
                     }}
                     variant="contained"
+                    onClick={() => setIsDialogOpen(true)}
                 >
-                    캠페인 등록
+                    {selectedCampaignId
+                        ? `캠페인
+등록중`
+                        : `캠페인
+등록`}
                 </Button>
             </Stack>
             <Stack direction="row" justifyContent="space-between" mt="45px">
@@ -134,4 +153,4 @@ export const Info = () => {
             </Stack>
         </Stack>
     );
-};
+});
