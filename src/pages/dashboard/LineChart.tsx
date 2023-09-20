@@ -51,7 +51,7 @@ const data = {
 
 const 날짜간격 = ['일간', '주간', '월간'];
 
-export const ChartLine = () => {
+export const LineChart = () => {
     const ref = useRef();
     const [간격, set간격] = useState<(typeof 날짜간격)[number]>('일간');
 

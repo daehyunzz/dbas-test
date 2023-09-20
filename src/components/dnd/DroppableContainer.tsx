@@ -20,6 +20,7 @@ interface Props<T> {
     id: string;
     title: string;
     list: T[];
+    show?: () => void;
 }
 
 const Title = ({ title }: { title: string }) => {
@@ -80,7 +81,7 @@ export const ProductContainer = ({ id, title, list }: Props<제품>) => {
                             <SearchIcon sx={{ width: '40px', height: '40px' }} />
                         </IconButton>
                     </Stack>
-                    <Stack sx={{ width: '178px', height: '60px', marginTop: '10px' }}>
+                    <Stack sx={{ width: '200px', height: '60px', marginTop: '10px' }}>
                         <Select
                             fullWidth
                             value={label}
@@ -158,6 +159,7 @@ export const ProductContainer = ({ id, title, list }: Props<제품>) => {
 export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
     const [label1, setLabel1] = useState<string>('최근 일주일');
     const [label2, setLabel2] = useState<string>('매출순');
+    console.log({ label1, label2 });
     return (
         <Droppable droppableId={id}>
             {(droppableProvider) => (
@@ -193,7 +195,7 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
                             <SearchIcon sx={{ width: '40px', height: '40px' }} />
                         </IconButton>
                     </Stack>
-                    <Stack direction="row" gap="8px" sx={{ marginTop: '10px' }}>
+                    <Stack direction="row" gap="8px" sx={{ marginTop: '10px', width: '100%' }}>
                         <Select
                             fullWidth
                             value={label1}
@@ -202,18 +204,20 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
                                 setLabel1(value as string);
                             }}
                             sx={{
-                                'width': '188px',
+                                'width': '200px',
                                 'height': '60px',
                                 '& .MuiInputBase-input.MuiSelect-select': {
                                     fontWeight: '400',
                                     fontSize: '24px',
                                     minHeight: 'auto',
+                                    letterSpacing: '0.01em',
+                                    textAlign: 'left',
                                     paddingLeft: 0,
                                     paddingRight: 0,
                                 },
                             }}
                         >
-                            {['최신 등록순', '최저가순'].map((menu) => (
+                            {['최근 일주일', '최근 한달'].map((menu) => (
                                 <MenuItem value={menu} key={menu}>
                                     {menu}
                                 </MenuItem>
@@ -238,7 +242,7 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
                                 },
                             }}
                         >
-                            {['최근 일주일', '최근 한달'].map((menu) => (
+                            {['매출순', '최신 등록순', '최저가순'].map((menu) => (
                                 <MenuItem value={menu} key={menu}>
                                     {menu}
                                 </MenuItem>
@@ -317,9 +321,9 @@ export const ProductWithPrice = ({ id, title, list }: Props<상품>) => {
     );
 };
 
-export const RegisterContainer = observer(({ id, title, list }: Props<등록>) => {
+export const RegisterContainer = observer(({ id, title, list, show }: Props<등록>) => {
     const scrollToProductSetting = () => {
-        // scrollIntoView
+        show?.();
     };
 
     const handleChange = (id: string) => (value: number) => {

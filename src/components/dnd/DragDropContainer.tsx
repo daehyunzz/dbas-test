@@ -14,7 +14,7 @@ const StyledDragDropContainer = styled('div')`
     gap: 19px;
 `;
 
-export const DragDropContainer = observer(() => {
+export const DragDropContainer = observer(({ show }: { show: () => void }) => {
     const handleDragEnd = (result: DropResult) => {
         const { droppableId: from, index: fromIndex } = result.source;
         const { destination } = result;
@@ -44,6 +44,7 @@ export const DragDropContainer = observer(() => {
                     id="등록_리스트"
                     title="등록 리스트"
                     list={productStore.등록_리스트}
+                    show={show}
                 />
             </DragDropContext>
         </StyledDragDropContainer>

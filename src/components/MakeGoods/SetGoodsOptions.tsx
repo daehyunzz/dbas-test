@@ -2,6 +2,7 @@ import { forwardRef, useState } from 'react';
 
 import { NumericFormat, NumericFormatProps } from 'react-number-format';
 
+import { keyframes } from '@emotion/react';
 import AddIcon from '@mui/icons-material/Add';
 import DownloadIcon from '@mui/icons-material/Download';
 import Box from '@mui/material/Box';
@@ -52,6 +53,15 @@ const NumericFormatCustom = forwardRef<NumericFormatProps, CustomProps>(
     }
 );
 
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+`;
 export function SetGoodsOptions() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -67,7 +77,7 @@ export function SetGoodsOptions() {
     const [propertyFile, setPropertyFile] = useState<FileList | null>(null);
 
     return (
-        <Stack width="1500px" mt="60px" pb="100px">
+        <Stack width="1500px" mt="60px" pb="100px" sx={{ animation: `${fadeIn} 0.5s` }}>
             <Drawer
                 open={isDrawerOpen}
                 onClose={() => setIsDrawerOpen(false)}

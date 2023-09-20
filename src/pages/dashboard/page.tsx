@@ -3,9 +3,9 @@ import { Stack, styled } from '@mui/material';
 import { Spacing } from '@components/ui/Spacing';
 
 import { Block } from './Block';
-import { ChartLine } from './ChartLine';
 import { DoughnutChart } from './DoughnutChart';
 import { InfoBar } from './InfoBar';
+import { LineChart } from './LineChart';
 import { Outline } from './Outline';
 import { Title } from './Title';
 
@@ -35,7 +35,7 @@ export const DashBoard = () => {
                         <DoughnutChart />
                     </Block>
                     <Block title="고객별 증감 추이" flex={1}>
-                        <ChartLine />
+                        <LineChart />
                     </Block>
                 </Stack>
                 <Block title="캘린더">
