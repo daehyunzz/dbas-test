@@ -37,12 +37,22 @@ export const FigmaColorBox: React.FC<ColorBoxProps> = ({
         height,
         backgroundColor,
         display: 'flex',
-        borderRadius: `1vh`,
+        borderRadius: `10000px`,
     };
     return (
         <>
             <Box sx={style}>
-                <Typography sx={{ color: 'white' }}>{text}</Typography>
+                <Typography
+                    sx={{
+                        color: 'white',
+                        margin: 'auto',
+                        lineHeight: '18px',
+                        fontWeight: '600',
+                        fontSize: '15.36',
+                    }}
+                >
+                    {text}
+                </Typography>
             </Box>
         </>
     );

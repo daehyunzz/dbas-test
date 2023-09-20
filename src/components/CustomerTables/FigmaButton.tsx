@@ -32,7 +32,7 @@ export const FigmaButton: React.FC<FigmaButtonProps> = ({
                   radius: '4px',
                   border: '1px solid #000000',
                   fontSize: '28px',
-                  fontWeight: '600',
+                  fontWeight: '500',
                   display: 'flex',
               };
 

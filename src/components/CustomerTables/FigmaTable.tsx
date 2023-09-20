@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
-import { TablePagination } from '@mui/material';
+import { TablePagination, Typography } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -111,6 +111,22 @@ const FigmaTable: React.FC<FigmaTableProps> = ({
     const indexOfFirstRow = indexOfLastRow - rowsPerPage;
     const currentRows = rows.slice(indexOfFirstRow, indexOfLastRow);
 
+    const DesignedHeaderTableCell: React.FC<{ children: ReactNode }> = ({ children }) => {
+        return (
+            <TableCell
+                sx={{
+                    backgroundColor: '#CDCDCD',
+                    border: '1px solid #FFFFFF',
+                    fontWeight: '700',
+                    fontSize: '17.92px',
+                    lineHeight: '21px',
+                }}
+            >
+                {children}
+            </TableCell>
+        );
+    };
+
     return (
         <>
             <TableContainer>
@@ -118,7 +134,7 @@ const FigmaTable: React.FC<FigmaTableProps> = ({
                     <TableHead>
                         <TableRow>
                             {isCheckbox && (
-                                <TableCell>
+                                <DesignedHeaderTableCell>
                                     <Checkbox
                                         indeterminate={
                                             selected.length > 0 && selected.length < rows.length
@@ -126,17 +142,25 @@ const FigmaTable: React.FC<FigmaTableProps> = ({
                                         checked={selected.length === rows.length}
                                         onChange={handleSelectAll}
                                     />
-                                </TableCell>
+                                </DesignedHeaderTableCell>
                             )}
                             {columns.map((column) => (
-                                <TableCell key={column.field}>{column.headerName}</TableCell>
+                                <DesignedHeaderTableCell key={column.field}>
+                                    {column.headerName}
+                                </DesignedHeaderTableCell>
                             ))}
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {currentRows.map((row) => (
-                            //@ts-expect-error zzzz
-                            <TableRow key={row.id}>
+                            <TableRow
+                                //@ts-expect-error zzzz
+                                key={row.id}
+                                sx={{
+                                    borderTop: '1px solid #000000',
+                                    height: '52px',
+                                }}
+                            >
                                 {isCheckbox && (
                                     <TableCell>
                                         <Checkbox
@@ -149,7 +173,18 @@ const FigmaTable: React.FC<FigmaTableProps> = ({
                                     </TableCell>
                                 )}
                                 {columns.map((column) => (
-                                    <TableCell key={column.field}>{row[column.field]}</TableCell>
+                                    <TableCell key={column.field} sx={{}}>
+                                        <Typography
+                                            sx={{
+                                                fontWeight: '400px',
+                                                fontSize: '17.92px',
+                                                lineHeight: '21px',
+                                                width: '100%',
+                                            }}
+                                        >
+                                            {row[column.field]}
+                                        </Typography>
+                                    </TableCell>
                                 ))}
                             </TableRow>
                         ))}
