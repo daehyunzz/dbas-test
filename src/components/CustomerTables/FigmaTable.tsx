@@ -158,6 +158,7 @@ const FigmaTable: React.FC<FigmaTableProps> = ({
                                 key={row.id}
                                 sx={{
                                     borderTop: '1px solid #000000',
+                                    height: '52px',
                                 }}
                             >
                                 {isCheckbox && (

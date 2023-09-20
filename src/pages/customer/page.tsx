@@ -3,6 +3,7 @@ import icons from 'assets/icons.png';
 
 import { FigmaButton } from '@components/CustomerTables/FigmaButton';
 import { FigmaColorBox } from '@components/CustomerTables/FigmaColorBox';
+import { FigmaHeader } from '@components/CustomerTables/FigmaHeader';
 import FigmaTable, { Column } from '@components/CustomerTables/FigmaTable';
 import { MenuItem } from '@components/ui/MenuItem';
 
@@ -81,26 +82,7 @@ export const Customer = () => {
     }
     return (
         <Box sx={{ width: '100%', padding: '50px' }}>
-            <Box
-                sx={{
-                    width: '100%',
-                    height: '60px',
-                    borderBottom: '1px solid #A9A9A9',
-                    marginBottom: '40px',
-                }}
-            >
-                <Typography
-                    sx={{
-                        // width: '127px',
-                        height: '38px',
-                        fontWeight: '700',
-                        fontSize: '32px',
-                        lineHeight: '37.5px',
-                    }}
-                >
-                    고객조회
-                </Typography>
-            </Box>
+            <FigmaHeader isBorder={true}>고객조회</FigmaHeader>
             <Box sx={{ display: 'flex', gap: '30px', flexFlow: 'column' }}>
                 <Input
                     placeholder="검색어를 입력해주세요."

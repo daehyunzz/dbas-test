@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Customer } from '@pages/customer/page';
 import { New } from '@pages/goods/new/page';
 import { Goods } from '@pages/goods/page';
+import { CustomerManagement } from '@pages/marketing/contentsManagement/messages/customerManagement/page';
 import { NewProduct } from '@pages/product/new/page';
 import { Product } from '@pages/product/page';
 
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
             { path: '/goods', element: <Goods /> },
             { path: '/goods/new', element: <New /> },
             { path: '/customer', element: <Customer /> },
+            { path: '/marketing/customer-management', element: <CustomerManagement /> },
             // Add more route configurations as needed
         ],
     },
