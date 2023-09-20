@@ -1,11 +1,8 @@
-import { Box, Input, Select, Typography } from '@mui/material';
-import icons from 'assets/icons.png';
+import { Box } from '@mui/material';
 
-import { FigmaButton } from '@components/CustomerTables/FigmaButton';
 import { FigmaColorBox } from '@components/CustomerTables/FigmaColorBox';
 import { FigmaHeader } from '@components/CustomerTables/FigmaHeader';
 import FigmaTable, { Column } from '@components/CustomerTables/FigmaTable';
-import { MenuItem } from '@components/ui/MenuItem';
 
 export const Messages = () => {
     const columns: Column[] = [
@@ -15,76 +12,41 @@ export const Messages = () => {
             width: 70,
         },
         {
-            field: 'name',
-            headerName: '이름',
-            width: 128,
+            field: '발송일시',
+            headerName: '발송일시',
+            width: 320,
         },
         {
-            field: 'status',
+            field: '내용',
+            headerName: '내용',
+            width: 626,
+        },
+        {
+            field: '상태',
             headerName: '상태',
-            width: 211.84,
+            width: 350,
         },
-        {
-            field: 'company',
-            headerName: '회사',
-            width: 246.4,
-        },
-        {
-            field: 'mobile',
-            headerName: '휴대폰',
-            width: 204.8,
-        },
-        {
-            field: 'email',
-            headerName: '이메일',
-            width: 248.96,
-        },
-        { field: 'icons', headerName: ' ', width: 213.12 },
-        { field: 'createdAt', headerName: '등록일', width: 204.8 },
     ];
-    type CustomerRow = {
+    type MessageRow = {
         [K in (typeof columns)[number]['field']]: string | number | JSX.Element;
     };
 
-    const rows: CustomerRow[] = [];
+    const rows: MessageRow[] = [];
     for (let i = 1; i <= 20; i++) {
-        let status;
-
-        if (i % 3 === 0) {
-            status = <FigmaColorBox width="88.32px" height="35.2px" text={'잠재고객'} />;
-        } else if (i % 3 === 1) {
-            status = (
-                <FigmaColorBox
-                    width="88.32px"
-                    height="35.2px"
-                    color="LightBlue"
-                    text={'일반고객'}
-                />
-            );
-        } else {
-            status = (
-                <FigmaColorBox width="88.32px" height="35.2px" color="Yellow" text={'충성고객'} />
-            );
-        }
-
-        const rowData: CustomerRow = {
+        const row: MessageRow = {
             id: i,
-            name: `사용자 ${i}`,
-            status: status,
-            company: `회사 ${i}`,
-            mobile: `010-1234-${i.toString().padStart(2, '0')}`,
-            email: `user${i}@example.com`,
-            icons: <img src={icons} />,
-            createdAt: `2023-09-${i.toString().padStart(2, '0')}`,
+            발송일시: `2023-09-20`,
+            내용: `이것은 더미 내용 ${i}입니다.`,
+            상태: <FigmaColorBox text="전송완료" color="Green" width="214px" height="42px" />,
         };
-
-        rows.push(rowData);
+        rows.push(row);
     }
+
     return (
         <Box sx={{ width: '100%', padding: '50px' }}>
-            <FigmaHeader isBorder={true}>고객조회</FigmaHeader>
+            <FigmaHeader isBorder={true}>발송 내역</FigmaHeader>
             <Box sx={{ display: 'flex', gap: '30px', flexFlow: 'column' }}>
-                <Input
+                {/* <Input
                     placeholder="검색어를 입력해주세요."
                     sx={{
                         width: '843px',
@@ -94,8 +56,8 @@ export const Messages = () => {
                         lineHeight: '32.81px',
                         border: 'solid 1px #000000',
                     }}
-                />
-                <Box>
+                /> */}
+                {/* <Box>
                     <Typography sx={{ fontWeight: '700', fontSize: '32px', lineHeight: '37.5px' }}>
                         총 {rows.length}명(잠재
                         {
@@ -120,9 +82,9 @@ export const Messages = () => {
                         }
                         )
                     </Typography>
-                </Box>
+                </Box> */}
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Select
+                    {/* <Select
                         value={'전체'}
                         sx={{
                             width: '172px',
@@ -133,16 +95,16 @@ export const Messages = () => {
                         }}
                     >
                         <MenuItem value={'전체'}>전체</MenuItem>
-                    </Select>
-                    <Box sx={{ display: 'flex', gap: '1rem' }}>
+                    </Select> */}
+                    {/* <Box sx={{ display: 'flex', gap: '1rem' }}>
                         <FigmaButton text="엑셀로 추출하기" type="white" width="262px" />
                         <FigmaButton text="대량 등록 템플릿" type="white" width="269px" />
                         <FigmaButton text="대량 등록" type="blue" width="144px" />
                         <FigmaButton text="개별 등록" type="blue" width="144px" />
-                    </Box>
+                    </Box> */}
                 </Box>
                 <Box>
-                    <FigmaTable columns={columns} rows={rows} isCheckbox={false} />
+                    <FigmaTable columns={columns} rows={rows} rowsPerPage={100} />
                 </Box>
             </Box>
         </Box>
