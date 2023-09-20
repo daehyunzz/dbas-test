@@ -1,4 +1,5 @@
 import { Box, Input, Select, Typography } from '@mui/material';
+import icons from 'assets/icons.png';
 
 import { FigmaButton } from '@components/CustomerTables/FigmaButton';
 import { FigmaColorBox } from '@components/CustomerTables/FigmaColorBox';
@@ -72,7 +73,7 @@ export const Customer = () => {
             company: `회사 ${i}`,
             mobile: `010-1234-${i.toString().padStart(2, '0')}`,
             email: `user${i}@example.com`,
-            icons: `아이콘 ${i}`,
+            icons: <img src={icons} />,
             createdAt: `2023-09-${i.toString().padStart(2, '0')}`,
         };
 
